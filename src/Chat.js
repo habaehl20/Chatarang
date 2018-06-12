@@ -33,6 +33,7 @@ class Chat extends Component {
         <ChatHeader />
         <MessageList messages={this.state.messages} />
         <MessageForm addMessage={this.addMessage} />
+
       </div>
     )
   }
