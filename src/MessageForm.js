@@ -1,33 +1,36 @@
-import React from 'react'
+import React, { Component } from 'react'
 
+class MessageForm extends Component {
+  state = {
+    body: '',
+  }
 
-//continue to make this into a class with the 
-class MessageForm extends Component =>{
-    state = {
-        body: '',
-    }
+  handleSubmit = (ev) => {
+    ev.preventDefault()
+    this.props.addMessage(this.state.body)
+  }
 
-    handleChange = (ev) => {
-        ev.preventDefault()
-        
-    }
+  handleChange = (ev) => {
+    this.setState({ body: ev.target.value })
+  }
 
-    }
-    handleSubmit: (ev)
-    return(
-        <form className='MessageForm'
-        onSubmit={props.addMessage}>
-            <input type='text' 
-            name='body' 
-            placeholder='Type a message.....'  
-            value={this.state.body}
-            onChange={this.handleChange}
-            />
-
-            <button type='submit'> Send </button>
-        </form>
+  render() {
+    return (
+      <form
+        className="MessageForm"
+        onSubmit={this.handleSubmit}
+      >
+        <input
+          type="text"
+          name="body"
+          placeholder="Type a message..."
+          value={this.state.body}
+          onChange={this.handleChange}
+        />
+        <button type="submit">Send</button>
+      </form>
     )
- 
+  }
 }
 
 export default MessageForm

@@ -1,22 +1,35 @@
 import React from 'react'
 
-class Sidebar = (props) => {
-    render() {
-        return(
-            <div className='Sidebar'>
-                <aside className="Sidebar">
-      <div className="UserInfo">
-        <div
-          className="Avatar"
-          style="background: url(https://api.adorable.io/avatars/32/davey@getfretless.com)"
-        ></div>
-        <div className="user">{props.user.userName}</div>
+const Sidebar = (props) => {
+  return (
+    <aside
+      className="Sidebar"
+      style={styles.sidebar}
+    >
+      <div
+        className="UserInfo"
+        style={styles.children}
+      >
+        <div className="Avatar"></div>
+        <div className="user">
+          {props.user.userName}
+        </div>
         <a href="#">
           <i className="fas fa-sign-out-alt"></i>
         </a>
       </div>
-      <h1>XTBC 18</h1>
-      <nav className="RoomList">
+      <h1
+        style={{
+          ...styles.children,
+          ...styles.h1,
+        }}
+      >
+        XTBC 18
+      </h1>
+      <nav
+        className="RoomList"
+        style={styles.children}
+      >
         <h2>Rooms</h2>
         <ul>
           <li><a href="#">general</a></li>
@@ -24,28 +37,28 @@ class Sidebar = (props) => {
         </ul>
       </nav>
     </aside>
-            </div>
-        )
+  )
+}
 
-    }
-//CORRECT THE STYLING FOR THE SIDEBAR
-    cosnt styles = {
-        sidebar:{
-            backgroundColor: "#333344"
-            color: rgba(255, 255, 255, 0.8),
-        }
+const styles = {
+  sidebar: {
+    backgroundColor: '#333344',
+    color: 'rgba(255, 255, 255, 0.8)',
+    width: '12rem',
+    padding: '1rem 0',
+    display: 'flex',
+    flexDirection: 'column',
+  },
 
-        children:{
-            padding: '0 1rem',
-        }
+  children: {
+    padding: '0 1rem',
+  },
 
-        h1: {
-            color: 'white',
-            fontSize: '1.2rem',
-            
-        }
-    }
-        
+  h1: {
+    color: 'white',
+    fontSize: '1.2rem',
+    marginTop: 0,
+  },
 }
 
 export default Sidebar

@@ -1,24 +1,23 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
 
+import './App.css'
 import Main from './Main'
 
 class App extends Component {
-state = {
-  user: {
-    uid: '1234',
-    userName: 'User123',
+  state = {
+    user: {
+      uid: '1234',
+      userName: 'User123',
+    }
   }
-}
 
   render() {
     return (
       <div className="App">
-        <Main user={this.state.user}/>
+        <Main user={this.state.user} />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
