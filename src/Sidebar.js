@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class Sidebar extends Component {
+class Sidebar = (props) => {
     render() {
         return(
             <div className='Sidebar'>
-                sidebar
+                {props.user.userName}
             </div>
         )
 
