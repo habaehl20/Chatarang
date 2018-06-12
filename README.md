@@ -1,3 +1,18 @@
+# Chatarang 
+
+## DAY 6 homework
+
+  *create and style more compnonets, base on the 'chat-static' content. 
+      there should be one css file per component for the most part
+
+##Look at the rest of the homework on davey's repositor because I'm done typing
+
+
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
