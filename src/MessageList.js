@@ -1,7 +1,7 @@
 import React from 'react'
+import Message from 'message'
 
 const MessageList = () => {
-
 
     const messages = [
         { id:1, username: 'dstrus', body: 'Chating up a storm dude' }
@@ -10,10 +10,8 @@ const MessageList = () => {
 
     return(
         <div className='MessageList'>
-            { message.map(message => 
-                <div key={message.id}>
-                     {message.username} {message.body}
-                </div>)}
+            { message.map(msg => <message key={msg.id} message={props.msg}
+                
         </div>
     )
 }
