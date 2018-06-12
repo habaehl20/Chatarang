@@ -10,7 +10,7 @@ const MessageList = () => {
 
     return(
         <div className='MessageList'>
-            { message.map(msg => <message <Message key={mesg.id} message={msg} />)
+            { prop.message.map(msg => <Message key={msg.id} message={msg} />)
                 
         </div>
     )
