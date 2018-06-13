@@ -8,6 +8,7 @@ class App extends Component {
     user: {
       uid: '1234',
       userName: 'User123',
+      email: 'maggie@aol.com', 
     }
   }
 

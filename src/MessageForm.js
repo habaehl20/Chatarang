@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { StyleSheet, css } from 'aphrodite'
 
 class MessageForm extends Component {
   state = {
@@ -8,7 +9,7 @@ class MessageForm extends Component {
   handleSubmit = (ev) => {
     ev.preventDefault()
     this.props.addMessage(this.state.body)
-    this.setState({body: ''})
+    this.setState({ body: '' })
   }
 
   handleChange = (ev) => {
@@ -18,9 +19,8 @@ class MessageForm extends Component {
   render() {
     return (
       <form
-        className="MessageForm"
+        className={`MessageForm ${css(styles.form)}`}
         onSubmit={this.handleSubmit}
-        style={styles.messageForm}
       >
         <input
           type="text"
@@ -29,18 +29,16 @@ class MessageForm extends Component {
           autoFocus
           value={this.state.body}
           onChange={this.handleChange}
-          style={styles.input}
-        
+          className={css(styles.input)}
         />
-        <button type="submit" style={styles.button} >Send</button>
+        <button type="submit" className={css(styles.button)}>Send</button>
       </form>
     )
   }
 }
 
-
-const styles = {
-    messageForm:{
+const styles = StyleSheet.create({
+  form: {
     backgroundColor: 'white',
     height: '3rem',
     display: 'flex',
@@ -50,21 +48,25 @@ const styles = {
     margin: '0.25rem',
     padding: 0,
   },
-  
-  chatIcon: {
+
+  icon: {
     display: 'flex',
     borderRadius: '0.5rem',
     alignItems: 'center',
-    backgroundColor: "white",
+    backgroundColor: 'white',
     color: '#ccc',
     padding: '0 0.5rem',
-    fontSize:'1.2rem',
+    fontSize: '1.2rem',
   },
-  
+
   input: {
     flex: 1,
     fontSize: '1.2rem',
     border: 0,
+
+    ':focus': {
+      outline: 0,
+    },
   },
 
   button: {
@@ -77,5 +79,6 @@ const styles = {
     borderBottomRightRadius: '0.5rem',
     border: '1px solid white',
   },
-}
+})
+
 export default MessageForm
