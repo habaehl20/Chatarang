@@ -15,11 +15,11 @@ class Chat extends Component {
     }
   }
 
-  componentwillMount:() {
-    base.syncState('messages', {
-        context: this,
-        state: 'messages',
-        asArray: true,
+  componentWillMount() {
+    base.syncState('general/messages', {
+      context: this,
+      state: 'messages',
+      asArray: true,
     })
   }
 
