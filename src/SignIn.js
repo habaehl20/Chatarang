@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    color: '#ff3344',
+    color: '#2405ff',
     fontWeight: 400,
     textTransform: 'uppercase',
     lineHeight: '80px',
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   label: {
     display: 'block',
     textTransform: 'uppercase',
-    color: '#999',
+    color: '#3021af',
   },
 
   input: {
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
     padding: '1rem 2rem',
     fontSize: '1.2rem',
     borderRadius: '1rem',
-    backgroundColor: '#ff3333',
+    backgroundColor: '#2405ff',
     color: 'white',
     width: '20rem',
   },
