@@ -7,11 +7,10 @@ import base from './base'
 
 class Main extends Component {
     state = {
-        rooms:[
-            'general',
-            'random',
-        ],
-        currentRoom: 'general'
+        room:{
+            name: 'general',
+            description: 'Announcements and chatar',
+        }
     }
 
 
@@ -37,8 +36,7 @@ class Main extends Component {
         <Sidebar 
         user={this.props.user} 
         signOut={this.props.signOut} 
-        rooms={this.state.rooms}
-        currentRoom={this.state.currentRoom}
+        room={this.state.room}
         changeRoom={this.changeRoom}
         addRoom={this.addRoom}
         />
