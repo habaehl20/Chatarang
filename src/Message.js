@@ -16,7 +16,7 @@ const Message = ({ message }) => {
     </div>
   )
 }
-
+ 
 const styles = {
   message: {
     display: 'flex',
