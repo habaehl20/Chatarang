@@ -3,45 +3,30 @@ import React, { Component } from 'react'
 import Sidebar from './Sidebar'
 import Chat from './Chat'
 
-import base from './base'
-
 class Main extends Component {
-    state = {
-        room:{
-            name: 'general',
-            description: 'Announcements and chatar',
-        }
+  state = {
+    room: {
+      name: 's2morning',
+      description: 'Chatter about the actual class',
     }
+  }
 
-
-    changeRoom = (room) => {
-        const currentRoom = room
-        base.syncState(`${room}/messages`,{
-            context: this,
-            state: 'message',
-            asArray: true,
-        })
-        this.setState({currentRoom : room})
-    }
-
-    addRoom = (room) => {
-        const rooms = [...this.state.rooms]
-        rooms.push(room)
-        this.setState(rooms)
-    }
+  loadRoom = (room) => {
+    this.setState({ room })
+  }
 
   render() {
     return (
       <div className="Main" style={styles}>
-        <Sidebar 
-        user={this.props.user} 
-        signOut={this.props.signOut} 
-        room={this.state.room}
-        changeRoom={this.changeRoom}
-        addRoom={this.addRoom}
+        <Sidebar
+          user={this.props.user}
+          signOut={this.props.signOut}
+          loadRoom={this.loadRoom}
         />
-        <Chat user={this.props.user} rooms={this.state.currentRoom}/>
-        
+        <Chat
+          user={this.props.user}
+          room={this.state.room}
+        />
       </div>
     )
   }
