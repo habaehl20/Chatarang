@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 
 import './App.css'
 import { auth } from './base'
 import SignIn from './SignIn'
 import Main from './Main'
-import SignOut from './SignOut'
 
 class App extends Component {
   state = {
@@ -44,11 +43,9 @@ class App extends Component {
     return this.state.user.uid
   }
 
-  signOut = () => { 
-    this.setState({ 
-      user: {} 
-         }) 
-       } 
+  signOut = () => {
+    auth.signOut()
+  }
 
   handleUnauth = () => {
     this.setState({ user: {} })
@@ -58,14 +55,35 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Switch> 
-          <Route path='/sign-in' component={SignIn} />
+        <Switch>
+          <Route
+            path="/sign-in"
+            render={navProps => (
+              this.signedIn()
+                ? <Redirect to="/rooms/general" />
+                : <SignIn />
+            )}
+          />
+          <Route
+            path="/rooms/:roomName"
+            render={navProps => (
+              this.signedIn()
+              ? <Main
+                  user={this.state.user}
+                  signOut={this.signOut}
+                  {...navProps}
+                />
+              : <Redirect to="/sign-in" />
+            )}
+          />
+          <Route
+            render={() => (
+              this.signedIn()
+                ? <Redirect to="/rooms/general" />
+                : <Redirect to="/sign-in" />
+            )}
+          />
         </Switch>
-        {
-          this.signedIn()
-            ? <Main user={this.state.user} signOut={this.signOut} />
-            : <SignIn />
-        }
       </div>
     )
   }

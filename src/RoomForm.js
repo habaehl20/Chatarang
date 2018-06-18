@@ -12,6 +12,7 @@ class RoomForm extends Component {
   handleSubmit = (ev) => {
     ev.preventDefault()
     this.props.addRoom(this.state.room)
+    this.props.history.push(`/rooms/${this.state.room.name}`)
   }
 
   handleChange = (ev) => {
@@ -58,7 +59,7 @@ class RoomForm extends Component {
               <button
                 type="button"
                 className={css(styles.button, styles.cancel)}
-                onClick={this.props.hideRoomForm}
+                onClick={this.props.history.goBack}
               >
                 Cancel
               </button>
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    color: 'rgb(36, 5, 255)',
+    color: '#ff3344',
     fontWeight: 400,
     lineHeight: '80px',
     fontSize: '2rem',
@@ -147,7 +148,7 @@ const styles = StyleSheet.create({
     margin: '0 1rem',
     fontSize: '1.2rem',
     borderRadius: '1rem',
-    backgroundColor: 'rgb(36, 5, 255)',
+    backgroundColor: '#ff3333',
     color: 'white',
     width: '10rem',
     cursor: 'pointer',
