@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    color: '#ff3344',
+    color: 'rgb(36, 5, 255)',
     fontWeight: 400,
     lineHeight: '80px',
     fontSize: '2rem',
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     margin: '0 1rem',
     fontSize: '1.2rem',
     borderRadius: '1rem',
-    backgroundColor: '#ff3333',
+    backgroundColor: 'rgb(36, 5, 255)',
     color: 'white',
     width: '10rem',
     cursor: 'pointer',
