@@ -9,7 +9,6 @@ import base from './base'
 class RoomList extends Component {
   state = {
     rooms: {},
-    showRoomForm: false,
   }
 
   componentDidMount() {
@@ -22,14 +21,6 @@ class RoomList extends Component {
     )
   }
 
-  showRoomForm = () => {
-    this.setState({ showRoomForm: true })
-  }
-
-  hideRoomForm = () => {
-    this.setState({ showRoomForm: false })
-  }
-
   addRoom = (room) => {
     const rooms = {...this.state.rooms}
     rooms[room.name] = room
@@ -37,47 +28,50 @@ class RoomList extends Component {
   }
 
   render() {
-    <Switch>
-        <Route path='/rooms/new'
-        render={ () => hideRoomForm={this.hideRoomForm}
-        addRoom}                                    ///////////////////////////
+    return (
+      <Switch>
+        <Route
+          path="/rooms/new"
+          render={
+            navProps => (
+              <RoomForm
+                addRoom={this.addRoom}
+                {...navProps}
+              />
+            )
+          }
+        />
+        <Route
+          render={
+            () => (
+              <nav
+                className={`RoomList ${css(styles.nav)}`}
+              >
+                <div className={css(styles.heading)}>
+                  <h2 className={css(styles.h2)}>Rooms</h2>
+                  <Link
+                    className={css(styles.button)}
+                    to="/rooms/new"
+                  >
+                    <i className="fas fa-plus-circle" title="Add room"></i>
+                  </Link>
+                </div>
+                <ul className={css(styles.list)}>
+                  {
+                    Object.keys(this.state.rooms).map(roomName => (
+                      <RoomLink
+                        key={roomName}
+                        room={this.state.rooms[roomName]}
+                      />
+                    ))
+                  }
+                </ul>
+              </nav>
+            )
+          }
         />
       </Switch>
-    if (this.state.showRoomForm) {
-      return (
-        <RoomForm
-          hideRoomForm={this.hideRoomForm}
-          addRoom={this.addRoom}
-        />
-      )
-    } else {
-      return (
-        <nav
-          className={`RoomList ${css(styles.nav)}`}
-        >
-          <div className={css(styles.heading)}>
-            <h2 className={css(styles.h2)}>Rooms</h2>
-            <button
-              className={css(styles.button)}
-              onClick={this.showRoomForm}
-            >
-              <i className="fas fa-plus-circle" title="Add room"></i>
-            </button>
-          </div>
-          <ul className={css(styles.list)}>
-            {
-              Object.keys(this.state.rooms).map(roomName => (
-                <RoomLink
-                  key={roomName}
-                  room={this.state.rooms[roomName]}
-                  loadRoom={this.props.loadRoom}
-                />
-              ))
-            }
-          </ul>
-        </nav>
-      )
-    }
+    )
   }
 }
 
