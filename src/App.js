@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Route, Switch } from 'react-router-dom'
 
 import './App.css'
 import { auth } from './base'
@@ -57,6 +58,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Switch> 
+          <Route path='/sign-in' component={SignIn} />
+        </Switch>
         {
           this.signedIn()
             ? <Main user={this.state.user} signOut={this.signOut} />

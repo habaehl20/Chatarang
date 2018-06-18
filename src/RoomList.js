@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, css } from 'aphrodite'
+import { Route, Switch, Link } from 'react-router-dom'
 
 import RoomLink from './RoomLink'
 import RoomForm from './RoomForm'
@@ -36,6 +37,12 @@ class RoomList extends Component {
   }
 
   render() {
+    <Switch>
+        <Route path='/rooms/new'
+        render={ () => hideRoomForm={this.hideRoomForm}
+        addRoom}                                    ///////////////////////////
+        />
+      </Switch>
     if (this.state.showRoomForm) {
       return (
         <RoomForm
