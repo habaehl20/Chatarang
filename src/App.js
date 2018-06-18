@@ -4,6 +4,7 @@ import './App.css'
 import { auth } from './base'
 import SignIn from './SignIn'
 import Main from './Main'
+import SignOut from './SignOut'
 
 class App extends Component {
   state = {
@@ -42,9 +43,11 @@ class App extends Component {
     return this.state.user.uid
   }
 
-  signOut = () => {
-    auth.signOut()
-  }
+  signOut = () => { 
+    this.setState({ 
+      user: {} 
+         }) 
+       } 
 
   handleUnauth = () => {
     this.setState({ user: {} })
