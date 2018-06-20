@@ -21,6 +21,12 @@ const Sidebar = ({ user, signOut, users, rooms, addRoom }) => {
         rooms={rooms}
         addRoom={addRoom}
       />
+      <DirectMessageList
+        users={users}
+        user={user}
+        rooms={rooms}
+        addRoom={addRoom}
+      />
     </aside>
   )
 }

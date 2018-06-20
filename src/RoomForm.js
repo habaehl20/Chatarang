@@ -10,6 +10,7 @@ class RoomForm extends Component {
         description: '',
         public: true,
         members: [],
+        dm: false,
     },
   }
 
@@ -37,7 +38,10 @@ class RoomForm extends Component {
   }
 
   users = () => {
-    return Object.keys(this.props.users).map(
+    const { users } = this.props
+    delete users[this.props.user.uid]
+
+    return Object.keys(users).map(
       uid => {
         const user = this.props.users[uid]
         return {
@@ -76,7 +80,7 @@ class RoomForm extends Component {
                 type="text"
                 name="name"
                 value={this.state.room.name}
-                className={css(styles.input)}
+                className={css(styles.input, styles.textInput)}
                 onChange={this.handleChange}
                 autoFocus
               />
@@ -89,7 +93,7 @@ class RoomForm extends Component {
                 type="text"
                 name="description"
                 value={this.state.room.description}
-                className={css(styles.input)}
+                className={css(styles.input, styles.textInput)}
                 onChange={this.handleChange}
               />
             </p>
@@ -109,6 +113,8 @@ class RoomForm extends Component {
                     value={this.state.room.members}
                     options={this.users()}
                     onChange={this.handleSelectChange}
+                    className={css(styles.input)}
+                    placeholder="Invite other people..."
                   />
                 </div>
               )
@@ -138,6 +144,7 @@ class RoomForm extends Component {
 const styles = StyleSheet.create({
   roomForm: {
     position: 'absolute',
+    zIndex: 1000,
     top: 0,
     left: 0,
     height: '100vh',
@@ -168,6 +175,8 @@ const styles = StyleSheet.create({
     boxShadow: '0 1px 1px rgba(0,0,0,.1)',
     marginBottom: '2rem',
     paddingBottom: '2rem',
+    paddingLeft: '2rem',
+    paddingRight: '2rem',
   },
 
   label: {
@@ -177,18 +186,20 @@ const styles = StyleSheet.create({
   },
 
   input: {
-    width: '20rem',
     fontSize: '1.5rem',
     border: 0,
     borderBottom: '1px solid black',
-    marginTop: '1rem',
-    marginBottom: '1rem',
+    margin: '1rem auto',
     textAlign: 'center',
     padding: '0.5rem',
 
     ':focus': {
       outline: 0,
     },
+  },
+
+  textInput: {
+    width: '20rem',
   },
 
   h2: {

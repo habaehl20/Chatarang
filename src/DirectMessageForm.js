@@ -7,9 +7,10 @@ class DirectMessageForm extends Component {
   state = {
     room: {
         name: '',
-        description: 'Direct Message',
+        description: 'Direct message',
         public: false,
         members: [],
+        dm: true,
     },
   }
 
@@ -22,6 +23,7 @@ class DirectMessageForm extends Component {
   handleChange = (ev) => {
     const room = {...this.state.room}
     const target = ev.target
+    const value = target.type === 'checkbox' ? target.checked : target.value
 
     room[target.name] = value
     this.setState({ room })
@@ -36,7 +38,10 @@ class DirectMessageForm extends Component {
   }
 
   users = () => {
-    return Object.keys(this.props.users).map(
+    const { users } = this.props
+    delete users[this.props.user.uid]
+
+    return Object.keys(users).map(
       uid => {
         const user = this.props.users[uid]
         return {
@@ -51,61 +56,31 @@ class DirectMessageForm extends Component {
     return (
       <div className={`RoomForm ${css(styles.roomForm)}`}>
         <main className={css(styles.main)}>
-          <h2 className={css(styles.title)}>Direct Message</h2>
+          <h2 className={css(styles.title)}>
+            Direct Message
+          </h2>
           <form
             className={css(styles.form)}
             onSubmit={this.handleSubmit}
           >
-            <p>
-              <label className={css(styles.label)}>
-                Public
+            <div>
+              <label
+                htmlFor="users"
+                className={css(styles.label)}
+              >
+                Start a conversation
               </label>
-            </p>
-            <p>
-              <label htmlFor="name" className={css(styles.label)}>
-                Room Name
-              </label>
-              <input
-                type="text"
-                name="name"
-                value={this.state.room.name}
+              <Select
+                name="members"
+                multi
+                value={this.state.room.members}
+                options={this.users()}
+                onChange={this.handleSelectChange}
                 className={css(styles.input)}
-                onChange={this.handleChange}
-                autoFocus
+                placeholder="Invite other people..."
               />
-            </p>
-            <p>
-              <label htmlFor="description" className={css(styles.label)}>
-                Description
-              </label>
-              <input
-                type="text"
-                name="description"
-                value={this.state.room.description}
-                className={css(styles.input)}
-                onChange={this.handleChange}
-              />
-            </p>
+            </div>
 
-            {
-              !this.state.room.public && (
-                <div>
-                  <label
-                    htmlFor="users"
-                    className={css(styles.label)}
-                  >
-                    Start a Conversation
-                  </label>
-                  <Select
-                    name="members"
-                    multi
-                    value={this.state.room.members}
-                    options={this.users()}
-                    onChange={this.handleSelectChange}
-                  />
-                </div>
-              )
-            }
             <div className={css(styles.buttonContainer)}>
               <button
                 type="button"
@@ -118,7 +93,7 @@ class DirectMessageForm extends Component {
                 type="submit"
                 className={css(styles.button)}
               >
-                Create Room
+                Go
               </button>
             </div>
           </form>
@@ -131,6 +106,7 @@ class DirectMessageForm extends Component {
 const styles = StyleSheet.create({
   roomForm: {
     position: 'absolute',
+    zIndex: 1000,
     top: 0,
     left: 0,
     height: '100vh',
@@ -139,7 +115,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    color: 'rgb(36,5,255)',
+    color: 'rgb(36, 5, 255)',
     fontWeight: 400,
     lineHeight: '80px',
     fontSize: '2rem',
@@ -160,7 +136,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     boxShadow: '0 1px 1px rgba(0,0,0,.1)',
     marginBottom: '2rem',
-    paddingBottom: '2rem',
+    padding: '2rem',
   },
 
   label: {
@@ -170,18 +146,20 @@ const styles = StyleSheet.create({
   },
 
   input: {
-    width: '20rem',
     fontSize: '1.5rem',
     border: 0,
     borderBottom: '1px solid black',
-    marginTop: '1rem',
-    marginBottom: '1rem',
+    margin: '1rem auto',
     textAlign: 'center',
     padding: '0.5rem',
 
     ':focus': {
       outline: 0,
     },
+  },
+
+  textInput: {
+    width: '20rem',
   },
 
   h2: {
@@ -199,7 +177,7 @@ const styles = StyleSheet.create({
     margin: '0 1rem',
     fontSize: '1.2rem',
     borderRadius: '1rem',
-    backgroundColor: 'rgb(36, 5, 255)',
+    backgroundColor: 'rgb(35, 5, 255)',
     color: 'white',
     width: '10rem',
     cursor: 'pointer',

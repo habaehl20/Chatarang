@@ -4,11 +4,10 @@ import { Route, Switch, Link } from 'react-router-dom'
 
 import RoomLink from './RoomLink'
 import RoomForm from './RoomForm'
-import DirectMessageForm from './DirectMessageForm'
 
 class RoomList extends Component {
   render() {
-    const { rooms } = this.props
+    const rooms = this.props.rooms.filter(room => !room.dm)
 
     return (
       <Switch>
