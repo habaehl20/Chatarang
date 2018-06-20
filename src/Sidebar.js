@@ -3,7 +3,7 @@ import React from 'react'
 import UserInfo from './UserInfo'
 import RoomList from './RoomList'
 
-const Sidebar = ({ user, signOut, loadRoom, users }) => {
+const Sidebar = ({ user, signOut, loadRoom, users, rooms }) => {
   return (
     <aside
       className="Sidebar"
