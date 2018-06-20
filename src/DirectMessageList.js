@@ -6,7 +6,7 @@ import RoomLink from './RoomLink'
 import RoomForm from './RoomForm'
 import DirectMessageForm from './DirectMessageForm'
 
-class RoomList extends Component {
+class DirectMessageForm extends Component {
   render() {
     const { rooms } = this.props
 
@@ -39,7 +39,7 @@ class RoomList extends Component {
                     className={css(styles.button)}
                     to="/rooms/new"
                   >
-                    <i className="fas fa-plus-circle" title="Add room"></i>
+                    <i className="fas fa-plus-circle" title="Add new direct message"></i>
                   </Link>
                 </div>
                 <ul className={css(styles.list)}>
@@ -98,4 +98,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default RoomList
+export default DirectMessageForm
